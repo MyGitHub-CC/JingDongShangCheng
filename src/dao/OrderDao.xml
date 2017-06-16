@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC   
+    "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.OrderDao">
+
+	<select id="searchByUId" resultMap="searchByUId" >
+		select * from orders where u_id = #{uId} 
+	</select>
+	<resultMap type="entity.Order" id="searchByUId">
+		<id property="id" column="id"></id>
+		<result property="num" column="num"></result>
+		<result property="count" column="count"></result>
+		<association property="product" column="pro_id"  javaType="entity.Product">
+			<id property="id" column="pro_id"></id>
+		</association>
+		<association property="user" column="u_id"  javaType="entity.User">
+			<id property="id" column="u_id"></id>
+		</association>
+	</resultMap>
+	
+	<insert id="insert">
+		insert into orders (u_id,pro_id, num, uuid,pro_price) values (#{uId},#{product.id},#{num},#{uuId},#{product.price})
+	</insert>
+	
+	<delete id="delete">
+		delete from order where u_id = #{uId} 
+	</delete>
+	
+</mapper> 
+    

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC   
+    "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.CartDao">
+
+	<select id="searchByUId" resultMap="searchByUId" >
+		select * from cart where u_id = #{uId} 
+	</select>
+	<resultMap type="entity.Cart" id="searchByUId">
+		<id property="id" column="id"></id>
+		<result property="num" column="num"></result>
+		<result property="count" column="count"></result>
+		<association property="product" column="pro_id"  javaType="entity.Product">
+			<id property="id" column="pro_id"></id>
+		</association>
+		<association property="user" column="u_id"  javaType="entity.User">
+			<id property="id" column="u_id"></id>
+		</association>
+	</resultMap>
+	
+	<select id="searchByUIdAndProId" resultType="entity.Cart">
+		select * from cart where u_id = #{uId} and pro_id=#{proId}
+	</select>
+	
+	<insert id="insert">
+		insert into cart (u_id,pro_id,num) values (#{uId},#{proId},#{num})
+	</insert>
+	
+	<update id="update">
+		update cart set num = #{num} where u_id = #{uId} and pro_id = #{proId}
+	</update>
+	
+	<delete id="delete">
+		delete from cart where u_id = #{uId} and pro_id = #{proId}
+	</delete>
+	
+	<delete id="deleteByUIdAndProIds">
+		delete from cart where u_id = #{uId} and pro_id in ${proIds}
+	</delete>
+	
+	<select id="searchByUIdAndProIds" resultMap="searchByUIdAndProIds" >
+		select * from cart where u_id = #{uId} and pro_id in ${proIds}
+	</select>
+	
+	<resultMap type="entity.Cart" id="searchByUIdAndProIds">
+		<id property="id" column="id"></id>
+		<result property="num" column="num"></result>
+		<result property="count" column="count"></result>
+		<association property="product" column="pro_id"  javaType="entity.Product">
+			<id property="id" column="pro_id"></id>
+		</association>
+		<association property="user" column="u_id"  javaType="entity.User">
+			<id property="id" column="u_id"></id>
+		</association>
+	</resultMap>
+</mapper> 
+    

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC   
+    "-//mybatis.org//DTD Mapper 3.0//EN"  
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.ProductDao">
+
+	<select id="search" resultType="entity.Product" >
+		select * from product limit #{begin},8
+	</select>
+	
+	<select id="searchByUId" resultType="entity.Product" >
+		select * from product where u_id = #{uId}
+	</select>
+	
+	<select id="searchCount" resultType="java.lang.Integer" >
+		select count(id) as n from product 
+	</select>
+	
+	<select id="searchProsAndPubs" resultMap="ProsAndPubs" >
+		select pro.*, pub.id as pub_id, pub.name as pub_name from product as pro 
+		left join publishing as pub on pro.pub_id = pub.id limit #{begin},8
+	</select>
+	<resultMap type="entity.Product" id="ProsAndPubs">
+		<id  property="id" column="id"></id>
+		<result property="name" column="name"></result>
+		<result property="price" column="price"></result>
+		<result property="num" column="num"></result>
+		<result property="photo" column="photo"></result>
+		<result property="introduce" column="introduce"></result>
+		<association property="publishing" column="pub_id"  javaType="entity.Publishing">
+			<id property="id" column="pub_id"></id>
+			<result property="name" column="pub_name"></result>
+		</association>
+	</resultMap>
+	
+	<select id="searchById" resultMap="searchById" >
+		select pro.*, pub.id as pub_id, pub.name as pub_name,i.* from product as pro 
+		left join publishing as pub on pro.pub_id = pub.id 
+		LEFT JOIN  image as i on i.pro_id = pro.id where pro.id = #{proId}
+	</select>
+	<resultMap type="entity.Product" id="searchById">
+		<id  property="id" column="id"></id>
+		<result property="name" column="name"></result>
+		<result property="price" column="price"></result>
+		<result property="num" column="num"></result>
+		<result property="author" column="author"></result>
+		<result property="photo" column="photo"></result>
+		<result property="introduce" column="introduce"></result>
+		<association property="publishing" column="pub_id"  javaType="entity.Publishing">
+			<id property="id" column="pub_id"></id>
+			<result property="name" column="pub_name"></result>
+		</association>
+		<association property="image" column="pub_id"  javaType="entity.Image">
+			<id property="bigImg" column="big_img"></id>
+			<result property="smallImg" column="small_img"></result>
+		</association>
+	</resultMap>
+</mapper> 
+    
