@@ -64,16 +64,18 @@ public class IndexController {
 		}
 	}
 	
-//	@RequestMapping(value="searchMenu", method={RequestMethod.POST, RequestMethod.GET})
-//	public void searchMenu( int cId, HttpServletResponse response) {
-//		List<Kind> kinds = kindService.searchKindAndClazz(cId);
-//		try {
-//			PrintWriter out = response.getWriter();
-//			JSONArray jsonArray = JSONArray.fromObject(kinds);
-//			out.print(jsonArray);
-//		} catch (IOException e1) {
-//			e1.printStackTrace();
-//		}
-//	}
+	@RequestMapping(value="searchMenu", method={RequestMethod.POST, RequestMethod.GET})
+	public void searchMenu( int cId, HttpServletResponse response) {
+		response.setContentType("text/html;charset=utf-8");
+		List<Kind> kinds = kindService.searchKindAndClazz(cId);
+		try {
+			PrintWriter out = response.getWriter();
+			JSONArray jsonArray = JSONArray.fromObject(kinds);
+			System.out.println(jsonArray);
+			out.print(jsonArray);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
 	
 }

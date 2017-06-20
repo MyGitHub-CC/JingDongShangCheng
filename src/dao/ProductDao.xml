@@ -6,7 +6,7 @@
 <mapper namespace="dao.ProductDao">
 
 	<select id="search" resultType="entity.Product" >
-		select * from product limit #{begin},8
+		select * from product limit #{begin},5
 	</select>
 	
 	<select id="searchByUId" resultType="entity.Product" >
@@ -17,11 +17,12 @@
 		select count(id) as n from product 
 	</select>
 	
-	<select id="searchProsAndPubs" resultMap="ProsAndPubs" >
-		select pro.*, pub.id as pub_id, pub.name as pub_name from product as pro 
+							
+<select id="searchProsAndPubs" resultMap="searchProsAndPubs" >
+		select pro.*, pub.name as pubName from product as pro 
 		left join publishing as pub on pro.pub_id = pub.id limit #{begin},8
 	</select>
-	<resultMap type="entity.Product" id="ProsAndPubs">
+	<resultMap type="entity.Product" id="searchProsAndPubs">
 		<id  property="id" column="id"></id>
 		<result property="name" column="name"></result>
 		<result property="price" column="price"></result>
@@ -30,12 +31,12 @@
 		<result property="introduce" column="introduce"></result>
 		<association property="publishing" column="pub_id"  javaType="entity.Publishing">
 			<id property="id" column="pub_id"></id>
-			<result property="name" column="pub_name"></result>
+			<result property="name" column="pubName"></result>
 		</association>
 	</resultMap>
 	
 	<select id="searchById" resultMap="searchById" >
-		select pro.*, pub.id as pub_id, pub.name as pub_name,i.* from product as pro 
+		select pro.*, pub.name as pubName,i.* from product as pro 
 		left join publishing as pub on pro.pub_id = pub.id 
 		LEFT JOIN  image as i on i.pro_id = pro.id where pro.id = #{proId}
 	</select>
@@ -49,12 +50,15 @@
 		<result property="introduce" column="introduce"></result>
 		<association property="publishing" column="pub_id"  javaType="entity.Publishing">
 			<id property="id" column="pub_id"></id>
-			<result property="name" column="pub_name"></result>
+			<result property="name" column="pubName"></result>
 		</association>
 		<association property="image" column="pub_id"  javaType="entity.Image">
 			<id property="bigImg" column="big_img"></id>
 			<result property="smallImg" column="small_img"></result>
 		</association>
 	</resultMap>
+	
+
+	
 </mapper> 
     

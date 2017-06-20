@@ -1,0 +1,408 @@
+@CHARSET "UTF-8";
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-size: 14px;
+}
+body, button, input, txt {
+    font-family: "Microsoft YaHei","Hiragino Sans GB";
+}
+.header {
+	height: 110px;
+}
+.w {
+	width: 990px;
+	margin: 0 auto;
+}
+.root61 .w {
+	width: 1210px;
+}
+.header .logo {
+    width: 160px;
+    height: 50px;
+    float: left;
+    margin-top: 24px;
+}
+.header .logo, .i-company, .i-def, .i-error, .i-error1, .i-global, .i-suc {
+}
+.header .logo-title {
+    float: left;
+    height: 34px;
+    line-height: 34px;
+    font-size: 24px;
+    color: #333;
+    padding-left: 30px;
+    margin-top: 34px;
+}
+.header .have-account {
+    font-size: 16px;
+    float: right;
+    margin-top: 55px;
+    color: #999;
+}
+.root61 .w {
+    width: 1210px;
+}
+.main {
+    margin: 50px auto 60px;
+    width: 830px;
+}
+.reg-form {
+    width: 400px;
+}
+.fl {
+    float: left;
+}
+form {
+    display: block;
+}
+.form-item-account {
+    z-index: 13;
+}
+.form-item {
+    position: relative;
+    border: solid 1px #ddd;
+    width: 398px;
+    height: 52px;
+    z-index: 0;
+}
+.form-item label {
+    float: left;
+    width: 90px;
+    height: 52px;
+    line-height: 52px;
+    padding-left: 20px;
+}
+element.style {
+    position: absolute;
+    z-index: 2;
+    line-height: 46px;
+    margin-left: 20px;
+    margin-top: 1px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "Hiragino Sans GB";
+    color: rgb(204, 204, 204);
+    display: inline;
+}
+.form-item txt {
+    margin-top: 2px;
+}
+.form-item .field {
+    border: 0 none;
+    font-size: 14px;
+    width: 287px;
+    height: 51px;
+    line-height: 51px;
+    padding-bottom: 11px;
+    padding-left: 20px;
+    padding-top: 16px;
+}
+.form-item .i-status {
+    position: absolute;
+    display: none;
+    width: 16px;
+    height: 16px;
+    top: 20px;
+    right: 20px;
+}
+div {
+    display: block;
+}
+.input-tip {
+    color: #c5c5c5;
+    height: 27px;
+    font-size: 12px;
+    padding-top: 5px;
+}
+.form-item {
+    position: relative;
+    border: solid 1px #ddd;
+    width: 398px;
+    height: 52px;
+    z-index: 0;
+}
+em, i, u {
+    font-style: normal;
+}
+.capslock-tip {
+    right: 2px;
+    top: -45px;
+}
+.tips {
+    position: absolute;
+    background: #fef4e5;
+    border: solid 1px #f6c090;
+    color: #bc5212;
+    display: none;
+    padding: 0 12px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 3px;
+    z-index: 11;
+}
+.tips .arrow {
+    width: 0;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    border-color: #f6c090 transparent transparent;
+    border-style: solid dashed dashed;
+    border-width: 8px;
+    position: absolute;
+    left: 50%;
+    margin-left: -4px;
+    bottom: -16px;
+}
+.tips .arrow-inner {
+    width: 0;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    border-color: #fef4e5 transparent transparent;
+    border-style: solid dashed dashed;
+    border-width: 8px;
+    position: absolute;
+    left: 50%;
+    margin-left: -4px;
+    bottom: -15px;
+}
+.capslock-tip {
+    right: 2px;
+    top: -45px;
+}
+.item-email-wrap {
+    display: none;
+    height: 86px;
+    position: relative;
+    z-index: 11;
+}
+.item-phone-wrap {
+    height: 86px;
+    position: relative;
+    z-index: 2;
+}
+#country_code_layer {
+    font-family: "Microsoft YaHei";
+    display: none;
+    background-color: #fff;
+    text-align: center;
+    height: 180px;
+    width: 340px;
+    position: absolute;
+    cursor: default;
+    z-index: 110;
+    box-shadow: 0 0 2px 2px #eee;
+    border: 1px solid #eee;
+    padding-top: 4px;
+    top: 62px;
+}
+element.style {
+    background-color: transparent;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+#country_code_layer .arrow {
+    display: block;
+    position: absolute;
+    background-image: url(//misc.360buyimg.com/user/reg/1.0.0/widget/foreign-number-layer-1130/i/tips.gif);
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 9px;
+    background-position: 0 0;
+    overflow: hidden;
+    top: -9px;
+    left: 50px;
+}
+#country_code_layer a {
+    text-decoration: none;
+}
+.form-item-phone .field {
+    border: 0 none;
+    font-size: 14px;
+    width: 272px;
+    height: 51px;
+    line-height: 51px;
+    padding-bottom: 11px;
+    padding-left: 20px;
+    padding-top: 16px;
+}
+.form-item-phone .select-country {
+    width: 104px;
+    padding: 0 0 0 20px;
+    height: 52px;
+    border: none;
+    color: #666;
+    border-right: solid 1px #ddd;
+}
+.form-item-phone .arrow {
+    background: url(image/register/icon.png) no-repeat;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-top: 15px;
+    margin-left: 5px;
+    background-position: -2px -151px;
+}
+.item-phone-wrap .orEmail {
+    position: absolute;
+    right: 0;
+    bottom: 6px;
+    font-size: 12px;
+}
+.item-phone-wrap .orEmail a {
+    color: #38f;
+}
+.form-item .form-authcode, .form-item .phonecode {
+    width: 150px;
+}
+.form-item .img-code {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 110px;
+    height: 46px;
+    cursor: pointer;
+}
+img {
+    border: 0;
+    vertical-align: middle;
+}
+.btn-phonecode {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 110px;
+    height: 46px;
+    border: none;
+    background: #f2f2f2;
+    color: #333;
+    padding: 0;
+}
+.form-agreen {
+    color: #333;
+    font-size: 12px;
+    word-wrap: break-word;
+    white-space: nowrap;
+}
+.form-agreen input {
+    width: 18px;
+    height: 18px;
+    border: solid 1px #cfd1d3;
+    vertical-align: text-top;
+    padding: 0;
+    margin: 0;
+}
+.form-agreen a {
+    color: #38f;
+}
+.btn-register {
+    width: 100%;
+    height: 54px;
+    color: #fff;
+    background: #e22;
+    border: 0;
+    font-size: 16px;
+    font-family: "Microsoft YaHei","Hiragino Sans GB";
+}
+.reg-other {
+    float: left;
+    margin-left: 104px;
+    height: 605px;
+    padding-left: 90px;
+    border-left: solid 1px #e6e6e6;
+}
+.reg-other .company-reg {
+    width: 160px;
+    height: 60px;
+    border-bottom: solid 1px #ddd;
+    margin-left: 30px;
+}
+.reg-other .company-reg a {
+    display: block;
+    width: 160px;
+    height: 30px;
+}
+a {
+    color: #666;
+    text-decoration: none;
+}
+.reg-other .company-reg a i {
+    display: inline-block;
+    width: 30px;
+    height: 29px;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+.i-company {
+   background: url(image/register/icon.png) no-repeat;
+}
+.i-company {
+    background-position: 0 -50px;
+}
+.reg-other .company-reg a span {
+    vertical-align: middle;
+}
+.reg-other .inter-cust {
+    width: 160px;
+    margin-left: 30px;
+    margin-top: 30px;
+}
+.reg-other .inter-cust a {
+    display: block;
+    width: 170px;
+    height: 40px;
+}
+.reg-other a:hover {
+    color: #000;
+    font-weight: 700;
+}
+.reg-other .inter-cust a i {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    vertical-align: text-bottom;
+    margin-right: 15px;
+    float: left;
+    margin-top: 7px;
+}
+.i-global {
+    background-position: -50px -50px;
+}
+.reg-other .inter-cust a span {
+    display: inline-block;
+}
+.footer {
+    font-size: 12px;
+    text-align: center;
+    border-top: solid 1px #e6e6e6;
+    color: #999;
+    padding-bottom: 30px;
+}
+.root61 .w {
+    width: 1210px;
+}
+.footer .links {
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+.footer a {
+    color: #999;
+    margin: 0 10px;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.root61 .w {
+    width: 1210px;
+}

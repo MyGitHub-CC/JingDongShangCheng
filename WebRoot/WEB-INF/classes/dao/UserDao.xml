@@ -6,11 +6,34 @@
 <mapper namespace="dao.UserDao">
 
 	<select id="searchById" resultType="entity.User" >
-		select * from users where id = #{0} 
+		select * from users where id = #{uId} 
 	</select>
 	
 	<select id="searchByCondition" parameterType="entity.User" resultType="entity.User" >
 		select * from users where username = #{username} and password = #{password} 
 	</select>
+	
+	<select id="search" resultType="entity.User" >
+		select * from users limit #{begin},5 
+	</select>
+	
+	<select id="searchCount" resultType="java.lang.Integer" >
+		select count(*) as n from users
+	</select>
+	
+	<insert id="insert"  parameterType="entity.User" >
+		insert into users (username,password,sex,phone,photo,address) 
+		values (#{username},#{password},#{sex},#{phone},#{photo},#{address})
+	</insert>
+	
+	<update id="update"  parameterType="entity.User" >
+		update users set username=#{username}, password=#{password},sex=#{sex},phone=#{phone},
+		photo=#{photo},address=#{address} where id=#{id}
+	</update>
+	
+	<delete id="delete">
+		delete from users where id=#{uId}
+	</delete>
+	
 </mapper> 
     

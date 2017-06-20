@@ -8,7 +8,7 @@ import entity.Product;
 
 public interface ProductDao {
 
-	public List<Product> search();
+	public List<Product> search(int begin);
 	
 	public List<Product> searchByUId(int uId);
 	
@@ -17,4 +17,6 @@ public interface ProductDao {
 	public List<Product> searchProsAndPubs(@Param(value="begin")int begin);
 	
 	public Product searchById(@Param(value="proId")int proId);
+
+	public int insert(Product product);
 }

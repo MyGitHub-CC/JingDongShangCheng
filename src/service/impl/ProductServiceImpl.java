@@ -18,8 +18,8 @@ public class ProductServiceImpl implements ProductService{
 	ProductDao productDao;
 
 	@Override
-	public List<Product> search() {
-		return productDao.search();
+	public List<Product> search(int begin) {
+		return productDao.search(begin);
 	}
 
 	@Override
@@ -40,6 +40,11 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public Product searchById(int id) {
 		return productDao.searchById(id);
+	}
+
+	@Override
+	public int insert(Product product) {
+		return productDao.insert(product);
 	}
 
 }

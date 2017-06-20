@@ -177,14 +177,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
 		
 		/*详细列表显示与隐藏*/
-		 $(".left-menu-item").mouseover(function (){  
+		var li = "";
+		
+	 	$(".left-menu-item").hover(function (){ 
+			var cId = $(this).data("cid");
             $(".left-menu-item").css("background","#6e6568");
 			$(this).css("background","#999395");
-			$("#menu-detail").show();
-        }).mouseout(function (){  
-			$("#menu-detail").hide();
+			li = ".menu-detail-item" + $(this).attr("data-li");
+			var str = "";
+			$.ajax({
+				type:"post",
+				url:"searchMenu",
+				data:"cId=" + cId,
+				dataType:"json",
+				success:function(data){
+					$.each(data,function(index, element){
+						str += "<dl class='detial-content-item'><dt class='item-dt'><a>"+
+ 						element.name+"&nbsp; &gt;</a></dt>";
+						$.each(element.clazzs,function(i, e){
+							str+="<dd class='item-dd item-dd-li'><a>"+e.name+"</a></dd>";
+						});
+						str+="</dl></div>";
+					});
+					$(li).show();
+					$(".detial-content").html(str);
+				}
+			});
+        },function (){  
+ 			$(li).delay(300).hide(0);
             $(this).css("background","#6e6568");
-        }); 
+         }); 
 		
 		});
 </script>
@@ -202,7 +224,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      %>
      	<div id="top-gg">					   <!-- 顶部广告01 -->
 			<div class="top-w">
-				<a><img src="image/JD-Home/topgg.jpg"/></a>
+				<a><img src="image/JD-Home/top-gg2.jpg"/></a>
 				<span class="close">
 					×
 				</span>
@@ -405,7 +427,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="second-head">						<!-- 第二层：LoGo -->
 		<div class="w">
 			<div id="logo-JD">
-				<a><img src="image/JD-Home/logo-01.png"/></a>
+				<a><img src="image/JD-Home/logo-02.gif"/></a>
 			</div>
 			<div id="search-form">
 				<input type="text" id="searchInput" class="text"  />
@@ -476,19 +498,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	
 	<div id="third-shuf">
-		<div class="beijing" >
+		<div class="beijing" style="background: url(image/JD-Home/celan-02.png) no-repeat 50% 0;" >
 		</div>
 		<div id="shuf-inner" class="w">
 			<div class="inner-left">
 				<ul class="left-menu">
 					<%
-					for(int i = 0; i < categories.size(); i++){
+						for(int i = 0; i < categories.size(); i++){
 					    List<Species> species = categories.get(i).getSpecies();
 					    if(species == null){
 					 		continue;
 					 	}
 					 %>
-					 	<li class="left-menu-item" data-cId="<%=categories.get(i).getId()%>">
+					 	<li class="left-menu-item" data-li="<%=i %>" data-cid="<%=categories.get(i).getId()%>">
 					 	<%
 					 	for(int j = 0; j < species.size(); j++){
 					 		if(species.get(j) == null){
@@ -504,67 +526,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						 		</a>
 						 	<% } %>	
 					 	<% } %>
-					 	</li>
-					 <% } %>
+				 		<div class="menu-detail menu-detail-item<%=i %>" >						<!-- 图书层详细列表 -->
+					 		<div class="detail-books">
+								<div class="detial-top">
+									<ul>
+										<li class="detail-box">
+											<a>图书频道&nbsp; &gt;</a>
+										</li>
+										<li class="detail-box">
+											<a>邮币商城 &nbsp; &gt;</a>
+										</li>
+										<li class="detail-box">
+											<a>音像 &nbsp;&gt;</a>
+										</li>
+										<li class="detail-box">
+											<a>电子书 &nbsp; &gt;</a>
+										</li>
+										<li class="detail-box">
+											<a>图书榜 &nbsp; &gt;</a>
+										</li>
+										<li class="detail-box">
+											<a>娱乐圈&nbsp;  &gt;</a>
+										</li>
+									</ul>
+								</div>
+								<div class="detial-content">
+								
+								</div>		
+							</div>
+				 		</div>
+				 	</li>
+				 <% } %>
 				</ul>
-			
-			<div id="menu-detail">						<!-- 图书层详细列表 -->
-				<div class="detail-books">
-					<div class="detial-top">
-						<ul>
-							<li class="detail-box">
-								<a>图书频道&nbsp; &gt;</a>
-							</li>
-							<li class="detail-box">
-								<a>邮币商城 &nbsp; &gt;</a>
-							</li>
-							<li class="detail-box">
-								<a>音像 &nbsp;&gt;</a>
-							</li>
-							<li class="detail-box">
-								<a>电子书 &nbsp; &gt;</a>
-							</li>
-							<li class="detail-box">
-								<a>图书榜 &nbsp; &gt;</a>
-							</li>
-							<li class="detail-box">
-								<a>娱乐圈&nbsp;  &gt;</a>
-							</li>
-						</ul>
-					</div>
-				<div class="detial-content">
-					<%
-					for(int i = 0; i < kinds.size(); i++) { 
-						List<Clazz> clazzs = kinds.get(i).getClazzs();
-					%>
-						<div class="detial-content-item">
-							<div class="item-dt">
-								<a><%=kinds.get(i).getName() %>&nbsp; &gt;</a>
-							</div>
-							<div class="item-dd">
-								<ul>
-								<%
-								 	for (int j = 0; j < clazzs.size(); j++){
-								 %>
-									<li class="item-dd-li">
-									<a><%=clazzs.get(j).getName() %></a>
-									</li>
-								<% } %>
-								</ul>
-							</div>
-						</div>
-					<% } %>
-				</div>		
 			</div>
-		</div>
-	</div>		
+			
 			<div class="inner-middle">
 				<div class="lunbo" id="lb-box">
 					<ul id="lunbo-ul">
 					<% 
 						for (int i = 0; i < 8; i++) {
 					%>
-						<li class="lb-img"><a><img src="image/JD-Home/lunbo0<%=i+1 %>.jpg"/></a></li>
+						<li class="lb-img"><a><img src="image/JD-Home/lunbo-020<%=i+1 %>.jpg"/></a></li>
 					<% } %>
 					</ul>
 					<ul id="lunbo-nums">

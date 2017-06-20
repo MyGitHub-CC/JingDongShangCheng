@@ -98,4 +98,25 @@ public class CartController {
 			e.printStackTrace();
 		}
 	}
+	
+//	@RequestMapping(value="/a", method={RequestMethod.POST, RequestMethod.GET})
+//	public ModelAndView a() {
+//		ModelAndView mv = new ModelAndView("redirect: b");
+//		int uId = 1;
+//		Cart cart = new Cart();
+//		cart.setId(2);
+//		cart.setNum(5);
+//		mv.addObject("uId", uId);
+//		mv.addObject("cart", cart);
+//		return mv;
+//	}
+//	
+//	@RequestMapping(value="/b", method={RequestMethod.POST, RequestMethod.GET})
+//	public ModelAndView b(int uId,Cart cart) {
+//		ModelAndView mv = new ModelAndView("cart/c");
+//		int id = 1;
+//		mv.addObject("uId", uId);
+//		mv.addObject("id", id);
+//		return mv;
+//	}
 }

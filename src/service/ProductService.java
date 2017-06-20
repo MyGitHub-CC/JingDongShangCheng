@@ -8,7 +8,7 @@ import entity.Product;
 @Service
 public interface ProductService {
 	
-	public List<Product> search();
+	public List<Product> search(int begin);
 	
 	public List<Product> searchByUId(int uId);
 	
@@ -17,5 +17,7 @@ public interface ProductService {
 	public Product searchById(int id);
 
 	public int searchCount();
+
+	public int insert(Product product);
 	
 }

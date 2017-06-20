@@ -17,24 +17,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 <script>
 	$(document).ready(function(e) {
+// 		$(".login-tab")click(function(){
+// 		});
 		$("#imagecode").click(function(){
 			$(this).attr("src","randomImage?" + Math.random());
 		});
-	  $(":button").click(function(e){
-		$.ajax({
-			type:"post",
-			url:"doLogin",
-			data:$("#form").serialize(),
-			dataType:"text",
-			success:function(data){
-				if(data == "success"){
-					window.location.href = "index" ;
-				} else{
-					alert(data);
-					$(this).attr("src","randomImage?" + Math.random());
+		$(":button").click(function(e){
+			$.ajax({
+				type:"post",
+				url:"doLogin",
+				data:$("#form").serialize(),
+				dataType:"text",
+				success:function(data){
+					if(data == "success"){
+						window.location.href = "index" ;
+					} else{
+						alert(data);
+						$("#imagecode").attr("src","randomImage?" + Math.random());
+					}
 				}
-			}			
-		});
+			});
 		});
 	});
 </script>
@@ -90,11 +92,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<div class="w">
 					<div class="content-form">
-						<div class="login-table-left">  	<!-- 登录表单顶部 -->
-							<a href="#">扫码登录</a>
+						<div class="login-tab  login-table-left">  	<!-- 登录表单顶部 -->
+							<a href="javascript:void(0)" >扫码登录</a>
 						</div>
-						<div class="login-table-right">
-							<a href="#">账户登录</a>
+						<div class="login-tab login-table-right">
+							<a href="javascript:void(0)" >账户登录</a>
 						</div>
 						
 						<div class="form-input">			<!-- 登录表单中部 -->
@@ -137,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</a>
 								</li>
 								<li class="regist">
-									<a href="#" class="regist-link">
+									<a href="register" class="regist-link">
 										<img src="image/login/register.png" class="regist-icon"/>
 										<span> 立即注册 </span>
 									</a>

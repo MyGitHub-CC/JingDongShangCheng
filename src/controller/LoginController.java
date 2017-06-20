@@ -65,4 +65,31 @@ public class LoginController {
 				out.print("验证码输入有误！");
 			}
 		}
+	
+	@RequestMapping(value="register", method={RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView register(HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView("login/register");
+		return mv;
+	}
+	
+	@RequestMapping(value="doRegister", method={RequestMethod.POST, RequestMethod.GET})
+	public void doRegister(User registerUser, String iRand,
+			HttpServletRequest request, HttpServletResponse response) {
+		    String sRand = (String) request.getSession().getAttribute("sRand");
+			PrintWriter out = null;
+			try {
+				out = response.getWriter();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			if (sRand != null && sRand.equals(iRand)) {
+				int result = userService.insert(registerUser);
+				if(result > 0) {
+					out.print("success");
+				}
+			} else {
+				out.print("验证码输入有误！");
+			}
+		}
+	
 }

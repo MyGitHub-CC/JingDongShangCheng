@@ -49,6 +49,7 @@ public class OrderController {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="addOrder", method={RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView addOrder(HttpServletRequest request, HttpServletResponse response) {
 		List<Cart> carts = (List<Cart>) request.getSession().getAttribute("carts");
