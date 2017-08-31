@@ -5,6 +5,7 @@ public class Product {
 	private String name;
 	private double price;
 	private int repertory;
+	private int num;
 	private String photo;
 	private String author;
 	private Image image;
@@ -92,12 +93,21 @@ public class Product {
 		this.introduce = introduce;
 	}
 
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", price=" + price
-				+ ", repertory=" + repertory + ", photo=" + photo + ", author="
-				+ author + ", image=" + image + ", publishing=" + publishing
-				+ ", kind=" + kind + ", introduce=" + introduce + "]";
+				+ ", repertory=" + repertory + ", num=" + num + ", photo="
+				+ photo + ", author=" + author + ", image=" + image
+				+ ", publishing=" + publishing + ", kind=" + kind
+				+ ", introduce=" + introduce + "]";
 	}
 
 }

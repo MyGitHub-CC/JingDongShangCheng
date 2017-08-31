@@ -168,7 +168,7 @@ em {
 }
 .pay-load {
     position: relative;
-    min-height: 480px;
+    min-height: 200px;
     width:990px;
     float:left;
 }

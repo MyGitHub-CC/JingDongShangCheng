@@ -34,20 +34,19 @@ public class IndexController {
 	ProvinceService provinceService;
 	
 	@RequestMapping(value="index", method={RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView index(String pId,String pName,String cIdString, User user
-			,HttpServletRequest request) {
+	public ModelAndView index(String pId,String pName, User user, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index/index");
 		mv.addObject("pId", pId);
 		mv.addObject("pName", pName);
 		List<Category> categories = categoryService.searchGCAndGS();
-		int cId = 1;
-		if (cIdString != null) {
-			cId = Integer.parseInt(cIdString);
-		}
-		List<Kind> kinds = kindService.searchKindAndClazz(cId);
+//		int cId = 1;
+//		if (cIdString != null) {
+//			cId = Integer.parseInt(cIdString);
+//		}
+		//List<Kind> kinds = kindService.searchKindAndClazz(cId);
 		mv.addObject("categories", categories);
-		mv.addObject("kinds", kinds);
+		//mv.addObject("kinds", kinds);
 		mv.addObject("user", user);
 		return mv;
 	}
@@ -71,7 +70,7 @@ public class IndexController {
 		try {
 			PrintWriter out = response.getWriter();
 			JSONArray jsonArray = JSONArray.fromObject(kinds);
-			System.out.println(jsonArray);
+			//System.out.println(jsonArray);
 			out.print(jsonArray);
 		} catch (IOException e1) {
 			e1.printStackTrace();

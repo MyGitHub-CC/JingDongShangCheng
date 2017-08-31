@@ -11,10 +11,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <title>京东支付-请选择支付方式</title>
     
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/addOrder.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/addOrder.css">
 	<script src="bootstrap/js/jquery.min.js" type="text/javascript"></script>
 	<script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script>
 
+</script>
   </head>
   
   <body>
@@ -53,10 +55,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 <h3 class="o-title">
 				    <%
 				    	String msg = (String) request.getAttribute("msg");
-				    	out.print(msg);
-				     if("订单提交成功！".equals(msg)){%>
-				  	   	，请尽快付款！订单号：<%=request.getAttribute("uuId") 
-				  	  %>
+				    	String orderNum = (String) request.getAttribute("orderNum");
+				    %>
+				    <%=msg %>
+				     <%if("订单提交成功！".equals(msg)){%>
+				  	   	，请尽快付款！订单号：<%=orderNum%>
 				    <% } %>
 				 </h3>
 		        <p class="o-tips" id="deleteOrderTip">
@@ -80,20 +83,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    </div>
 	            
        		<div class="payment pay-load" >
-    			<div style="float:left;margin:110px 300px;">
+    			<div style="float:left;margin:20px 280px;">
     				<div style="width:200px; height:30px;margin:10px;text-align:center;">
     					<strong>微信支付</strong>
     				</div>
 	       			<img src="image/addOrder/payment.jpg" >
+    			<a href="ModifyOrder?orderNum=<%=orderNum %>&payment=1">
+    			<input type="button" id="paySuccess" value="支付完成" 
+    			style="width:200px;height:60px;margin-left:20px;font-weight:700;"/>
+    			</a>
     			</div>
-     		</div>
-     		
+     		  </div>
 	     	</div>
 	    </div>
 	</div>
 	
 	<div style="width:100%;height:100px;float:left;">
-		
 	</div>
 	
   </body>

@@ -12,11 +12,11 @@ public interface ProductService {
 	
 	public List<Product> searchByUId(int uId);
 	
-	public List<Product> searchProsAndPubs(int begin);
+	public List<Product> searchProsAndPubs(int cId, int begin);
 	
 	public Product searchById(int id);
 
-	public int searchCount();
+	public int searchCount(int cId);
 
 	public int insert(Product product);
 	

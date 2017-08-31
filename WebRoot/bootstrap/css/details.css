@@ -559,6 +559,10 @@ a{
 	float: left;
 	background: #FFFFFF;
 }
+#box-preview-book img{
+	width: 350px;
+	height: 350px;
+}
 #box-preview-book-list{
 	width: 1210px;
 	height: 214px;

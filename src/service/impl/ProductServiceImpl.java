@@ -28,13 +28,13 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public int searchCount() {
-		return productDao.searchCount();
+	public int searchCount(int cId) {
+		return productDao.searchCount(cId);
 	}
 	
 	@Override
-	public List<Product> searchProsAndPubs(int begin) {
-		return productDao.searchProsAndPubs(begin);
+	public List<Product> searchProsAndPubs(int cId, int begin) {
+		return productDao.searchProsAndPubs(cId,begin);
 	}
 
 	@Override

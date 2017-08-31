@@ -16,7 +16,7 @@ public interface CartDao {
 
 	public Cart searchByUIdAndProId(@Param(value="uId")int uId, @Param(value="proId")int proId);
 
-	public int delete(@Param(value="uId")int uId, @Param(value="proId")int proId);
+	public int delete(@Param(value="uId")int uId, @Param(value="proIdsString")String proIdsString);
 
 	public List<Cart> searchByUIdAndProIds(@Param(value="uId")int uId, @Param(value="proIds")String proIds);
 

@@ -15,12 +15,15 @@
 	
 	<select id="searchCount" resultType="java.lang.Integer" >
 		select count(id) as n from product 
+		<if test="cId > 1">
+		where c_id=#{cId}
+		</if>
+		
 	</select>
 	
-							
 <select id="searchProsAndPubs" resultMap="searchProsAndPubs" >
 		select pro.*, pub.name as pubName from product as pro 
-		left join publishing as pub on pro.pub_id = pub.id limit #{begin},8
+		left join publishing as pub on pro.pub_id = pub.id where pro.c_id=#{cId} limit #{begin},8
 	</select>
 	<resultMap type="entity.Product" id="searchProsAndPubs">
 		<id  property="id" column="id"></id>
@@ -57,8 +60,6 @@
 			<result property="smallImg" column="small_img"></result>
 		</association>
 	</resultMap>
-	
-
 	
 </mapper> 
     

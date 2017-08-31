@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import service.UserService;
 
+import entity.CreateMD5;
 import entity.RandomNumber;
 import entity.User;
 
@@ -51,13 +52,21 @@ public class LoginController {
 				e.printStackTrace();
 			}
 			if (iRand != null && sRand != null && sRand.equals(iRand)) {
+				String oldPass = conditionUser.getPassword();
+				String newPass = CreateMD5.getMd5(oldPass);
+				conditionUser.setPassword(newPass);
+				
 				User user = userService.searchByCondition(conditionUser);
 				if (user != null) {
 					User personUser = new User();
 					personUser.setId(user.getId());
 					personUser.setUsername(user.getUsername());
 					request.getSession().setAttribute("user", personUser);
-					out.print("success");
+				    if (request.getSession().getAttribute("proId") != null) {
+						out.print("showDetail");
+					}else {
+						out.print("success");
+					}
 				} else {
 					out.print("用户名或密码错误！");
 				}
@@ -83,7 +92,12 @@ public class LoginController {
 				e.printStackTrace();
 			}
 			if (sRand != null && sRand.equals(iRand)) {
-				int result = userService.insert(registerUser);
+				//MD5加密
+				String oldPass = registerUser.getPassword();
+			    String newPass = CreateMD5.getMd5(oldPass);
+				registerUser.setPassword(newPass);
+				
+				int result = userService.add(registerUser);
 				if(result > 0) {
 					out.print("success");
 				}
@@ -91,5 +105,4 @@ public class LoginController {
 				out.print("验证码输入有误！");
 			}
 		}
-	
 }

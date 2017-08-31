@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import entity.Cart;
+import entity.Product;
 
 @Service
 public interface CartService {
@@ -15,10 +16,10 @@ public interface CartService {
 	
 	public int update(int uId, int proId, int num);
 
-	public int delete(int uId, int proId);
+	public int delete(int uId, Integer[] proIds);
 
 	public List<Cart> searchByUIdAndProIds(int uId, String[] proIds);
 
-	public boolean deleteByUIdAndProIds(int uId, List<Cart> carts);
+	public int deleteByUIdAndProIds(int uId, List<Product> products);
 	
 }

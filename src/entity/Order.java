@@ -1,11 +1,15 @@
 package entity;
 
+import java.util.List;
+
 public class Order {
 	private int id;
-	private User user;
-	private Product product;
+	private int uId;
+	private List<Product> products;
 	private int num;
-	private int uuId;
+	private String orderNum;
+	private int payment;
+	private int send;
 
 	public int getId() {
 		return id;
@@ -15,20 +19,20 @@ public class Order {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public int getuId() {
+		return uId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setuId(int uId) {
+		this.uId = uId;
 	}
 
-	public Product getProduct() {
-		return product;
+	public List<Product> getProducts() {
+		return products;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 
 	public int getNum() {
@@ -39,18 +43,35 @@ public class Order {
 		this.num = num;
 	}
 
-	public int getUuId() {
-		return uuId;
+	public String getOrderNum() {
+		return orderNum;
 	}
 
-	public void setUuId(int uuId) {
-		this.uuId = uuId;
+	public void setOrderNum(String orderNum) {
+		this.orderNum = orderNum;
+	}
+
+	public int getPayment() {
+		return payment;
+	}
+
+	public void setPayment(int payment) {
+		this.payment = payment;
+	}
+
+	public int getSend() {
+		return send;
+	}
+
+	public void setSend(int send) {
+		this.send = send;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", user=" + user + ", product=" + product
-				+ ", num=" + num + ", uuId=" + uuId + "]";
+		return "Order [id=" + id + ", uId=" + uId + ", products=" + products
+				+ ", num=" + num + ", orderNum=" + orderNum + ", payment="
+				+ payment + ", send=" + send + "]";
 	}
 
 }

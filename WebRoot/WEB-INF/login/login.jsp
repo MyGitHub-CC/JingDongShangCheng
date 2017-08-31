@@ -31,6 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				success:function(data){
 					if(data == "success"){
 						window.location.href = "index" ;
+					} else if(data == "showDetail"){
+						window.location.href = "showDetail" ;
 					} else{
 						alert(data);
 						$("#imagecode").attr("src","randomImage?" + Math.random());

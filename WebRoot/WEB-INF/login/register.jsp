@@ -111,8 +111,7 @@ $(document).ready(function(e) {
 	<!-- 第一层：logo -->		
 	<div id="form-header" class="header" style="background: url(image/register/headbg.jpg) repeat-x left bottom;">
 	    <div class="logo-con w clearfix">
-	        <a href="//www.jd.com" class="logo">
-	        </a>
+	        <a href="//www.jd.com" class="logo"> </a>
 	        <div class="logo-title">欢迎注册</div>
 	        <div class="have-account">已有账号？
 	         <a href="login">请登录</a>
@@ -124,27 +123,6 @@ $(document).ready(function(e) {
 		<div class="main clearfix" id="form-main">
 			<div class="reg-form fl">
 				<form action="doRegister" id="register-form" method="post" onsubmit="return">
-					<input type="hidden" name="new" value="new_person_reg" />
-					 <input type="hidden" id="localmisc" name="localmisc" value="" /> 
-					 <input type="hidden" name="regType" id="regType" value="person" />
-					 <input type="hidden" name="uuid" id="uuid" value="3430ab19-4f7d-4d61-8e73-e8a5d0fd67ff" />
-					 <input type="hidden" name="verifymc" id="verifymc" value="" /> 
-					 <input type="hidden" name="emailMg" id="emailMg" /> 
-					 <input type="hidden" name="authcodeMg" id="authcodeMg" /> 
-					 <input type="hidden" name="state" id="state" value="" /> 
-					 <input type="hidden" name="tgId" id="tgId" value="" />
-					 <input type="hidden" name="eid" id="eid" value="" />
-					 <input type="hidden" name="fp" id="sessionId" value="" /> 
-					 <input type="hidden" id="jcloud" name="jcloud" value="" /> 
-					 <input type="hidden" id="ucJcloud" name="ucJcloud" value="" /> 
-					 <input type="hidden" id="jcloud2" name="jcloud2" value="jcloud21497769625856" /> 
-					 <input type="hidden" value="-1" id="hnschool" class="hide" /> 
-					 <input type="hidden" id="schoolid" name="schoolid" class="hide" /> 
-					 <input type="hidden" name="jYpGlnHtDL" value="YisAe" />
-					 <!--chrome autocomplete off bug hack-->
-					 <input style="display:none" name="hack" /> 
-					 <input type="password" style="display:none" name="hack1" />
-
 					<div class="form-item form-item-account" id="form-item-account">
 						<label>用 户 名</label>
 					    <input type="text" id="form-account" name="username" class="field" autocomplete="off" maxlength="20"

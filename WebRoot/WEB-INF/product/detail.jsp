@@ -80,6 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			              location.href="cart";
 			           }else{
 			           	  alert(data);
+			           	  location.href="login";
 			           }
 		           }
 				});
@@ -88,7 +89,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	</script>
   </head>
- 
+  <%
+    	User user = (User) session.getAttribute("user");
+    	String username = "";
+    	if(user != null){
+    		username = user.getUsername();
+    	}
+     %>
   <body>
 		<div id="frist-line">
 			<div class="w">
@@ -100,7 +107,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="first-right">
 					<ul>
 						<li class="fore1">
-							<a>你好，请登录</a>
+							<%
+								if(username != ""){
+					 		%>
+				 			<a href="login" class="fr-cursor" style="color:#F10215"><%=username %> ,</a>
+							<% 
+								} else { 
+							%>
+								<a href="login" class="fr-cursor">你好，请登录</a>
+							<% } %>
 							<a class="regist">免费注册</a>
 						</li>
 						<li class="space">&nbsp;|&nbsp;</li>

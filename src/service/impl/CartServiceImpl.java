@@ -1,6 +1,5 @@
 package service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,8 +56,17 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public int delete(int uId, int proId) {
-		return cartDao.delete(uId, proId);
+	public int delete(int uId, Integer[] proIds) {
+		String proIdsString = "(";
+		for (int i = 0; i < proIds.length; i++) {
+			if (i != proIds.length - 1) {
+				proIdsString += proIds[i] + ", ";
+			} else {
+				proIdsString += proIds[i] ;
+			}
+		}
+		proIdsString += ")";
+		return cartDao.delete(uId, proIdsString);
 	}
 
 	@Override
@@ -85,25 +93,17 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public boolean deleteByUIdAndProIds(int uId, List<Cart> carts) {
-		List<Integer> proIds = new ArrayList<Integer>();
-		for (Cart cart : carts) {
-			proIds.add(cart.getProduct().getId());
-		}
+	public int deleteByUIdAndProIds(int uId, List<Product> products) {
 		String proIdString = "(";
-		for (int i = 0; i < proIds.size(); i++) {
-			if (i != proIds.size() - 1) {
-				proIdString += proIds.get(i) + ", ";
+		for (int i = 0; i < products.size(); i++) {
+			if (i != products.size() - 1) {
+				proIdString += products.get(i).getId() + ", ";
 			} else {
-				proIdString += proIds.get(i) ;
+				proIdString +=  products.get(i).getId() ;
 			}
 		}
 		proIdString += ")";
-		int rs = cartDao.deleteByUIdAndProIds(uId, proIdString);
-		boolean result = false;
-		if (rs > 0) {
-			result = true;
-		}
+		int result = cartDao.deleteByUIdAndProIds(uId, proIdString);
 		return result;
 	}
 

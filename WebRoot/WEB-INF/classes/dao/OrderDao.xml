@@ -6,27 +6,68 @@
 <mapper namespace="dao.OrderDao">
 
 	<select id="searchByUId" resultMap="searchByUId" >
-		select * from orders where u_id = #{uId} 
+		SELECT ord.*,m.num,pro.id as proId,pro.name,pro.price,pro.photo,pro.author from orders as ord
+		 left join m_pro_order as m on ord.id=m.order_id
+ 		 left JOIN product as pro on pro.id=m.pro_id  WHERE u_id = #{uId}
 	</select>
 	<resultMap type="entity.Order" id="searchByUId">
 		<id property="id" column="id"></id>
-		<result property="num" column="num"></result>
-		<result property="count" column="count"></result>
-		<association property="product" column="pro_id"  javaType="entity.Product">
-			<id property="id" column="pro_id"></id>
-		</association>
-		<association property="user" column="u_id"  javaType="entity.User">
-			<id property="id" column="u_id"></id>
-		</association>
+		<result property="orderNum" column="orderNum"></result>
+		<result property="uId" column="u_id"></result>
+		<result property="payment" column="payment"></result>
+		<result property="send" column="send"></result>
+		<collection property="products" column="pro_id" ofType="entity.Product">
+			<id property="id" column="proId" />
+			<result property="name" column="name" />
+			<result property="photo" column="photo" />
+			<result property="price" column="price" />
+			<result property="author" column="author" />
+			<result property="num" column="num" />
+		</collection>
 	</resultMap>
 	
 	<insert id="insert">
-		insert into orders (u_id,pro_id, num, uuid,pro_price) values (#{uId},#{product.id},#{num},#{uuId},#{product.price})
+		insert into orders (u_id,orderNum,payment,send) values (#{uId},#{orderNum},#{payment},#{send})
 	</insert>
 	
+	<insert id="insertMProAndOrder">
+		insert into m_pro_order (pro_id, num, price,order_id) values
+		 (#{product.id},#{num}, #{product.price},#{orderId})
+	</insert>
+	
+	<select id="searchByorderNum" resultType="java.lang.Integer">
+		select id from orders where orderNum = #{orderNum} 
+	</select>
+	
+	<select id="searchByorderId" resultMap="searchByorderId">
+		select * from m_pro_order where order_id = #{orderId} 
+	</select>
+	<resultMap type="entity.Order" id="searchByorderId">
+		<result property="num" column="orderNum"></result>
+		<association property="product" column="pro_id"  javaType="entity.Product">
+			<id property="id" column="proI_id"></id>
+			<result property="price" column="price"></result>
+		</association>
+	</resultMap>
+	
+	<update id="update"  parameterType="entity.Order">
+		update orders set payment=#{payment} ,send=#{send}  where u_id =#{uId} and orderNum =#{orderNum}
+	</update>
+	
+	<update id="updateById"  parameterType="entity.Order">
+		update orders set payment=#{payment} ,send=#{send}  where id =#{id}
+	</update>
+	
 	<delete id="delete">
-		delete from order where u_id = #{uId} 
+		delete from orders where u_id = #{uId} and orderNum =#{orderNum}
 	</delete>
 	
+	
+	<select id="searchById" resultMap="searchById">
+		select * from m_pro_order where order_id = #{orderId} 
+	</select>
+	<resultMap type="entity.Product" id="searchById">
+			<id property="id" column="pro_id"></id>
+	</resultMap>
 </mapper> 
     

@@ -24,7 +24,7 @@
 		<servlet-name>SpringMVC</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-<filter>
+	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>

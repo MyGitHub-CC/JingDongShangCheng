@@ -24,7 +24,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if(request.getAttribute("pName") != null){
 			pName = (String) request.getAttribute("pName");
 		}
-		
 	%>
 	$(document).ready(function(){
 		/*顶部广告点击关闭事件*/
@@ -98,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 			},
 			function(){
-				$(this).css("background-color", "#E05A72");
+				$(this).css("background-color", "#8B8E9D");
 			}
 		);
 		$("#arrowleft").click(function(){
@@ -161,6 +160,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$(this).css("color","#FFFFFF");
 			}
 		);
+		$(".fr-cursor-dd").hover(
+			function(){
+				$(this).css("cursor","pointer");
+				
+				$(this).addClass(".menu-detail .detail-books .change");
+				//$(this).attr("color","#C81623");
+			},
+			function (){
+				$(this).css("cursor","default");
+				//$(this).attr("color","#666666");
+			}
+		);
 		/*鼠标点击搜索框*/
 		var clickNum = $("#searchInput").val();
 		var obj;
@@ -192,10 +203,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				dataType:"json",
 				success:function(data){
 					$.each(data,function(index, element){
-						str += "<dl class='detial-content-item'><dt class='item-dt'><a>"+
+						str += "<dl class='detial-content-item'><dt class='item-dt'><a target='_blank' class='fr-cursor-dd'  href=showList?cId=" + cId + ">"+
  						element.name+"&nbsp; &gt;</a></dt>";
 						$.each(element.clazzs,function(i, e){
-							str+="<dd class='item-dd item-dd-li'><a>"+e.name+"</a></dd>";
+							str+="<dd class='item-dd item-dd-li'><a target='_blank' class='fr-cursor-dd'  href=showList?cId=" + cId + ">"+ e.name+"</a></dd>";
 						});
 						str+="</dl></div>";
 					});
@@ -215,7 +226,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <%
     	List<Category> categories = (List<Category>) request.getAttribute("categories");
-    	List<Kind> kinds = (List<Kind>) request.getAttribute("kinds");
+    	//List<Kind> kinds = (List<Kind>) request.getAttribute("kinds");
     	User user = (User) session.getAttribute("user");
     	String username = "";
     	if(user != null){
@@ -262,12 +273,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<% } %>
 					
 					&nbsp;
-					<a id="free-regist">免费注册</a>
+					<a id="free-regist" href="register" >免费注册</a>
 					&nbsp;|&nbsp;
 				</li>
 				
 				<li class="froe2">
-					<a href="#" class="fr-cursor">我的订单</a>
+					<a href="showOrder" class="fr-cursor">我的订单</a>
 					&nbsp;|&nbsp;
 				</li>
 				<li class="froe3 dropdown" data-hide="my-JD-hide" data-dt="my-JD-dt">
@@ -423,7 +434,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 	
-	
 	<div id="second-head">						<!-- 第二层：LoGo -->
 		<div class="w">
 			<div id="logo-JD">
@@ -505,34 +515,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<ul class="left-menu">
 					<%
 						for(int i = 0; i < categories.size(); i++){
-					    List<Species> species = categories.get(i).getSpecies();
-					    if(species == null){
-					 		continue;
-					 	}
+						    List<Species> species = categories.get(i).getSpecies();
+						    if(species == null){
+						 		continue;
+						 	}
 					 %>
-					 	<li class="left-menu-item" data-li="<%=i %>" data-cid="<%=categories.get(i).getId()%>">
-					 	<%
-					 	for(int j = 0; j < species.size(); j++){
-					 		if(species.get(j) == null){
-					 			continue;
-					 		}
-				 			if(j != species.size() -1) {
-						 	 %>		
-					 	 		<a target="_blank" class="cate_menu_lk fr-cursor-list"  href="showList" >
-					 	 		<%=species.get(j).getName() %></a><span>/</span>
-						 	<% } else { %>
-						 		<a target="_blank" class="cate_menu_lk fr-cursor-list" href="showList" >
-						 			<%=species.get(j).getName() %>
-						 		</a>
-						 	<% } %>	
-					 	<% } %>
+						 	<li class="left-menu-item" data-li="<%=i %>" data-cid="<%=categories.get(i).getId()%>">
+						 	<%
+						 	for(int j = 0; j < species.size(); j++){
+						 		if(species.get(j) == null){
+						 			continue;
+						 		}
+					 			if(j != species.size() -1) {
+							 	 %>		
+						 	 		<a target="_blank" class="cate_menu_lk fr-cursor-list"  href="showList?cId=<%=categories.get(i).getId() %>" >
+						 	 		<%=species.get(j).getName() %></a><span>/</span>
+							 	<% } else { %>
+							 		<a target="_blank" class="cate_menu_lk fr-cursor-list" href="showList?cId=<%=categories.get(i).getId() %>" >
+							 			<%=species.get(j).getName() %>
+							 		</a>
+							 	<% } %>	
+						 	<% } %>
 				 		<div class="menu-detail menu-detail-item<%=i %>" >						<!-- 图书层详细列表 -->
 					 		<div class="detail-books">
 								<div class="detial-top">
 									<ul>
+									<%
+										for(int k = 0; k<species.size();k++){
+									 %>
 										<li class="detail-box">
-											<a>图书频道&nbsp; &gt;</a>
+											<a><%=species.get(k).getName() %>&nbsp; &gt;</a>
 										</li>
+									 <%} %>
 										<li class="detail-box">
 											<a>邮币商城 &nbsp; &gt;</a>
 										</li>

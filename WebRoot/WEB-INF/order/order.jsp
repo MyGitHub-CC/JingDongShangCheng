@@ -15,14 +15,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="bootstrap/js/jquery.min.js" type="text/javascript"></script>
 	<script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 	<%
-		List<Cart> carts =(List<Cart>) request.getAttribute("carts");
-		session.setAttribute("carts", carts);
+		List<Cart> carts = (List<Cart>) request.getAttribute("carts");
+		String[] proIdArr = (String[]) request.getAttribute("proIds");
 	 %>
 	<script>
 	$(document).ready(function(){
-	   $("#order-submit").click(
-		function () {
-			location.href="addOrder" ;
+	    $("#order-submit").click(
+			function () {
+			var proIds = new Array();
+			var i = 0;
+			$("[name='proId']").each(function(index,element){
+					proIds[i] = $(this).attr("data-id");
+					i++;
+			});
+			location.href="addOrder?proIds="+ proIds;
 	    });
 	});
 	</script>
@@ -125,7 +131,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 			
-		 <div class="hr">	</div>
+		 <div class="hr">
+		 </div>
 		
 		<div id="shipAndSkuInfo">
 					<div id="payShipAndSkuInfo">
@@ -176,15 +183,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 			<!-- 购买物品1-->
 				<% 
-					
   					User user = (User) session.getAttribute("user");
 					DecimalFormat df = new DecimalFormat("######0.00");
 					double sum = 0;
-					for (int i= 0; i< carts.size();i++) {
-					Cart cart = carts.get(i);
-					sum += cart.getProduct().getPrice()*cart.getNum();
+					for (int i = 0; i < carts.size();i++) {
+						Cart cart = carts.get(i);
+						sum += cart.getProduct().getPrice() * cart.getNum();
 				 %>
 				<div class="item-list">
+				<input type="hidden" name="proId" data-id="<%=cart.getProduct().getId()%>">
 					<div class="item-list-dd">
 						<div class="cell-book-img">
 							<div class="p-cell-img">
@@ -224,7 +231,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="w">
 				<div>
 				<span class="price-tit">应付总额：</span>
-				<span class="price-num">￥<%=df.format(sum) %> </span>
+				<span class="price-num" id="sumPrice">￥<%=df.format(sum) %> </span>
 				</div>
 				<div>
 				<span class="address-user">寄送至： 山东 青岛市 城阳区 城阳街道  前旺疃社区27号楼2单元602室</span>

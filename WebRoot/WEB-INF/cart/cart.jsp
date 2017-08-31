@@ -178,27 +178,66 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		/*点击a标签删除指定商品，并隐藏该层的div*/
 		$(".deteleCart").click(function(){
-			 var msg = "您真的确定要删除吗？"; 
-			 if (confirm(msg) !=true){ 
+			var msg = "您真的确定要删除吗？"; 
+			if (confirm(msg) !=true){ 
 			  	return false; 
-			 }
+			}
 			var sum = 0;
 			  
 			var obj = $(this).parents(".item-list");
-			var proId = obj.attr("data-pId");
+			var proIds = new Array();
+			proIds[0] = obj.attr("data-pId");
+// 			   $.ajax({
+// 	           	type:"post",
+// 	           	url:"deteleCart",
+// 	           	data:"proIds="+ proIds,
+// 	           	dataType:"text",
+// 	           	success:function(data){
+// 	           		if(data == "success"){
+// 	           			location.href="cart";
+// 	           		}
+// 	           	}
+//             });
             $.ajax({
 	           	type:"post",
 	           	url:"deleteCart",
-	           	data:"proId="+ proId,
+	           	data:"proIds="+ proIds,
 	           	dataType:"text",
 	           	success:function(data){
 	           		if(data == "success"){
-	           			$(obj).hide();
+	           			location.href="cart";
+// 	           			$(obj).hide();
 	           		}
 	           	}
             });
         });
-			/*鼠标移上变颜色事件*/
+        $("#deteleCarts").click(function(){
+			var msg = "您真的确定要删除吗？"; 
+			if (confirm(msg) !=true){ 
+			  	return false; 
+			}
+			var sum = 0;
+			  
+			var proIds = new Array();
+			$("[name='choose']").each(function(index,element){
+				if($(element).prop("checked") == true){
+					proIds[index] = $(this).parents(".item-list").attr("data-pId") ;
+				}
+			});
+		    $.ajax({
+	          	type:"post",
+	          	url:"deleteCart",
+	          	data:"proIds="+ proIds,
+	          	dataType:"text",
+	          	success:function(data){
+	          		if(data == "success"){
+	          			location.href="cart";
+	          		}
+	          	}
+            });
+        });
+        
+		/*鼠标移上变颜色事件*/
 		$(".fr-cursor").hover(
 			function(){
 				$(this).css("cursor","pointer");
@@ -391,7 +430,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 &nbsp;全选
 				</div>
 				<div class="operation">
-					<a>删除选中的商品</a>
+					<a id="deteleCarts" class="fr-cursor">删除选中的商品</a>
 					&nbsp;&nbsp;
 					<a>移到我的关注</a>
 					&nbsp;&nbsp;

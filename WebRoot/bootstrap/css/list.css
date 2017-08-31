@@ -190,6 +190,10 @@ a{
 	width: 200px;
 	height: 200px;
 }
+ .p-img img{
+	width: 200px;
+	height: 200px;
+}
 .p-price{
 	width: 200px;
 	height: 30px;

@@ -47,20 +47,25 @@ public class CartController {
 	public void addCart(int proId, int num,HttpServletRequest request, HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
 		int uId = 0;
-		if (user != null) {
-			uId = user.getId(); 
-		}
-		int result = cartService.insert(uId, proId, num);
+		PrintWriter out;
 		try {
-			PrintWriter out = response.getWriter();
-			if(result > 0){
-				out.print("success");
+			out = response.getWriter();
+			if (user != null) {
+				uId = user.getId(); 
+				int result = cartService.insert(uId, proId, num);
+				if(result > 0){
+					out.print("success");
+				} else {
+					out.print("加入购物车失败！");
+				}
 			} else {
-				out.print("加入购物车失败！");
+				request.getSession().setAttribute("proId", proId);
+				out.print("请先登录！");
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
 		}
+		
 	}
 	
 	@RequestMapping(value="updateCart", method={RequestMethod.POST, RequestMethod.GET})
@@ -82,13 +87,13 @@ public class CartController {
 	}
 	
 	@RequestMapping(value="deleteCart", method={RequestMethod.POST, RequestMethod.GET})
-	public void deteleCart(int proId,HttpServletRequest request,HttpServletResponse response) {
+	public void deteleCart(Integer[] proIds,HttpServletRequest request,HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
 		int uId = 0;
 		if (user != null) {
 			uId = user.getId(); 
 		}
-		int result = cartService.delete(uId, proId);
+		int result = cartService.delete(uId, proIds);
 		try {
 			PrintWriter out = response.getWriter();
 			if(result > 0){

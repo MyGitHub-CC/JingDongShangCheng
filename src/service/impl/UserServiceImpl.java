@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int insert(User user) {
+	public int add(User user) {
 		return userDao.insert(user);
 	}
 

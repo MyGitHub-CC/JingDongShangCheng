@@ -16,7 +16,7 @@ public interface UserService {
 	
 	public int searchCount();
 
-	public int insert(User user);
+	public int add(User user);
 
 	public int update(User user);
 

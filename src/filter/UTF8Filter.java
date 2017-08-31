@@ -31,5 +31,4 @@ public class UTF8Filter implements Filter{
 		
 	}
 
-
 }

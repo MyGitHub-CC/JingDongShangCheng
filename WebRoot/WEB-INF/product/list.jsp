@@ -18,6 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	List<Product> products = (List<Product>)request.getAttribute("products");
   	int maxPage = (Integer)request.getAttribute("maxPage");
   	int ye = (Integer)request.getAttribute("page");
+  	int cId = (Integer)request.getAttribute("cId");
    %>
   <body>
 	<div id="frist-line">
@@ -150,24 +151,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	
 	<div id="turn-page">
-		<a href="showList?ye=1" >
+		<a href="showList?ye=1&cId=<%=cId %>" >
 			<input type="button" class="turn-page-pre" value="首页" />
 		</a>
-		<a href="showList?page=<%=ye-1 %>" >
+		<a href="showList?page=<%=ye-1 %>&cId=<%=cId %>" >
 			<input type="button" class="turn-page-pre" value="&lt 上一页" />
 		</a>
 		<%
 			for (int i = 0; i < maxPage; i++) {
 		 %>
-		 <a href="showList?ye=<%=i+1 %>" >
+		 <a href="showList?ye=<%=i+1 %>&cId=<%=cId %>" >
 			<input type="button" class="page-item" value="<%=i+1 %>" />
 		</a>
 		 <% } %>
 		&nbsp;...&nbsp;
-		<a href="showList?ye=<%=ye+1 %>" >
+		<a href="showList?ye=<%=ye+1 %>&cId=<%=cId %>" >
 			<input type="button" class="turn-page-next" value="下一页  &gt" />
 		</a>
-		<a href="showList?ye=<%=maxPage %>" >
+		<a href="showList?ye=<%=maxPage %>&cId=<%=cId %>" >
 			<input type="button" class="turn-page-next" value="尾页" />
 		</a>
 	</div>

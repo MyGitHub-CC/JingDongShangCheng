@@ -33,7 +33,7 @@
 	</update>
 	
 	<delete id="delete">
-		delete from cart where u_id = #{uId} and pro_id = #{proId}
+		delete from cart where u_id = #{uId} and pro_id in ${proIdsString}
 	</delete>
 	
 	<delete id="deleteByUIdAndProIds">
